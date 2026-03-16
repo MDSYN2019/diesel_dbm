@@ -32,6 +32,35 @@ pub fn generate_migration(
     Ok(migration_path)
 }
 
+/// Generates a versioned SQL diff file (for example `v1_to_v2.sql`) that
+/// highlights what changed between two schema definitions.
+///
+/// The generated file uses a light-weight, line-based format inspired by
+/// SQLDBM-style schema diffs:
+/// - lines prefixed with `-` exist only in the previous schema
+/// - lines prefixed with `+` exist only in the next schema
+/// - unchanged lines are omitted for readability
+pub fn generate_versioned_schema_diff(
+    migrations_dir: impl AsRef<Path>,
+    from_version: u32,
+    to_version: u32,
+    previous_schema_sql: &str,
+    next_schema_sql: &str,
+) -> io::Result<PathBuf> {
+    let migrations_dir = migrations_dir.as_ref();
+    fs::create_dir_all(migrations_dir)?;
+
+    let filename = format!("v{from_version}_to_v{to_version}.sql");
+    let path = migrations_dir.join(filename);
+    let diff_body = schema_line_diff(previous_schema_sql, next_schema_sql);
+    let file_contents = format!(
+        "-- Schema diff from v{from_version} to v{to_version}\n\n{diff_body}"
+    );
+
+    fs::write(&path, file_contents)?;
+    Ok(path)
+}
+
 fn migration_timestamp() -> String {
     let secs = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -96,6 +125,98 @@ fn sanitize_migration_name(name: &str) -> String {
     }
 }
 
+fn schema_line_diff(previous_schema_sql: &str, next_schema_sql: &str) -> String {
+    let previous_lines: Vec<&str> = previous_schema_sql
+        .lines()
+        .map(str::trim)
+        .filter(|line| !line.is_empty())
+        .collect();
+    let next_lines: Vec<&str> = next_schema_sql
+        .lines()
+        .map(str::trim)
+        .filter(|line| !line.is_empty())
+        .collect();
+
+    let lcs = longest_common_subsequence(&previous_lines, &next_lines);
+
+    let mut output = String::new();
+    let mut i = 0;
+    let mut j = 0;
+
+    for (common_i, common_j) in lcs {
+        while i < common_i {
+            output.push_str("- ");
+            output.push_str(previous_lines[i]);
+            output.push('\n');
+            i += 1;
+        }
+
+        while j < common_j {
+            output.push_str("+ ");
+            output.push_str(next_lines[j]);
+            output.push('\n');
+            j += 1;
+        }
+
+        i += 1;
+        j += 1;
+    }
+
+    while i < previous_lines.len() {
+        output.push_str("- ");
+        output.push_str(previous_lines[i]);
+        output.push('\n');
+        i += 1;
+    }
+
+    while j < next_lines.len() {
+        output.push_str("+ ");
+        output.push_str(next_lines[j]);
+        output.push('\n');
+        j += 1;
+    }
+
+    if output.is_empty() {
+        output.push_str("-- No schema changes detected.\n");
+    }
+
+    output
+}
+
+fn longest_common_subsequence(left: &[&str], right: &[&str]) -> Vec<(usize, usize)> {
+    let rows = left.len() + 1;
+    let cols = right.len() + 1;
+    let mut dp = vec![vec![0usize; cols]; rows];
+
+    for i in (0..left.len()).rev() {
+        for j in (0..right.len()).rev() {
+            if left[i] == right[j] {
+                dp[i][j] = dp[i + 1][j + 1] + 1;
+            } else {
+                dp[i][j] = dp[i + 1][j].max(dp[i][j + 1]);
+            }
+        }
+    }
+
+    let mut i = 0;
+    let mut j = 0;
+    let mut lcs = Vec::new();
+
+    while i < left.len() && j < right.len() {
+        if left[i] == right[j] {
+            lcs.push((i, j));
+            i += 1;
+            j += 1;
+        } else if dp[i + 1][j] >= dp[i][j + 1] {
+            i += 1;
+        } else {
+            j += 1;
+        }
+    }
+
+    lcs
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -154,5 +275,37 @@ mod tests {
         );
 
         fs::remove_dir_all(temp).ok();
+    }
+
+    #[test]
+    fn versioned_schema_diff_file_is_generated() {
+        let temp = temp_migration_dir();
+        let path = generate_versioned_schema_diff(
+            &temp,
+            1,
+            2,
+            "CREATE TABLE users (id SERIAL PRIMARY KEY, name TEXT);",
+            "CREATE TABLE users (id SERIAL PRIMARY KEY, full_name TEXT, created_at TIMESTAMP);",
+        )
+        .expect("schema diff generated");
+
+        assert_eq!(path.file_name().unwrap().to_string_lossy(), "v1_to_v2.sql");
+
+        let contents = fs::read_to_string(path).expect("schema diff file readable");
+        assert!(contents.contains("-- Schema diff from v1 to v2"));
+        assert!(contents.contains("- CREATE TABLE users (id SERIAL PRIMARY KEY, name TEXT);"));
+        assert!(
+            contents.contains(
+                "+ CREATE TABLE users (id SERIAL PRIMARY KEY, full_name TEXT, created_at TIMESTAMP);"
+            )
+        );
+
+        fs::remove_dir_all(temp).ok();
+    }
+
+    #[test]
+    fn versioned_schema_diff_marks_no_changes() {
+        let diff = schema_line_diff("CREATE TABLE posts (id INT);", "CREATE TABLE posts (id INT);");
+        assert_eq!(diff, "-- No schema changes detected.\n");
     }
 }
