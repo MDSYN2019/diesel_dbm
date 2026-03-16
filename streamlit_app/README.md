@@ -1,18 +1,18 @@
-# Streamlit integration scaffold
+# Streamlit Diesel DBM prototype
 
-This folder is a starter template for building Streamlit features against the
-same Postgres schema managed by Diesel.
+This Streamlit app now provides a lightweight **data modeling interface** (in the spirit of SQLDBM/Luna) while keeping this Rust/Diesel project as backend source of truth.
 
-## Why this exists
+## What it can do
 
-- Rust (`diesel_demo`) remains the source of truth for migrations and backend logic.
-- Streamlit can add UI/features quickly by reusing `DATABASE_URL` and existing tables.
-- `backend_client.py` centralizes connection/query code so future functions are easy to add.
+- Introspect the current Postgres schema (`information_schema.columns`).
+- Prototype a table using simple form inputs.
+- Generate DDL (`CREATE TABLE ...`) and apply it directly.
+- Keep the original posts list/create workflow available as a simple demo.
 
 ## Usage
 
-1. Export the same `DATABASE_URL` you use for Diesel.
-2. Install Python dependencies:
+1. Export `DATABASE_URL` (same connection Diesel uses).
+2. Install dependencies:
 
    ```bash
    pip install -r streamlit_app/requirements.txt
@@ -24,8 +24,7 @@ same Postgres schema managed by Diesel.
    streamlit run streamlit_app/app.py
    ```
 
-## Extending for future functions
+## Notes
 
-- Add new methods to `DieselDbClient` for each new feature.
-- Keep SQL in `backend_client.py`, keep UI in `app.py` or feature modules.
-- If you add new tables, create a Diesel migration first, then consume them here.
+- This is a pragmatic prototype and not a full SQLDBM implementation.
+- For production-grade modeling, route generated DDL through Diesel migrations.
