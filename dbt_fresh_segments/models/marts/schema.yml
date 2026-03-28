@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: dim_interest
+    description: Business-facing dimension for Fresh Segments interests.
+    columns:
+      - name: interest_id
+        tests:
+          - not_null
+          - unique
+      - name: interest_name
+        tests:
+          - not_null
+
+  - name: fct_interest_monthly_performance
+    description: Fact table with one row per interest and month including composition, index, and ranking metrics.
+    columns:
+      - name: month_start_date
+        tests:
+          - not_null
+      - name: interest_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_interest')
+              field: interest_id
+      - name: ranking_bucket
+        tests:
+          - accepted_values:
+              values: ['top_10', 'top_100', 'long_tail']

@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_fresh_segments__interest_map
+    description: Cleaned interest lookup dimension sourced from fresh_segments.interest_map.
+    columns:
+      - name: interest_id
+        tests:
+          - not_null
+          - unique
+      - name: interest_name
+        tests:
+          - not_null
+
+  - name: stg_fresh_segments__interest_metrics
+    description: Cleaned monthly metrics with typed numeric/date columns and removed placeholder NULL strings.
+    columns:
+      - name: interest_id
+        tests:
+          - not_null
+      - name: month_start_date
+        tests:
+          - not_null
+      - name: ranking
+        tests:
+          - not_null
