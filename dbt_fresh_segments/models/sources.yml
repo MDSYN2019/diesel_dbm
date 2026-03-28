@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: fresh_segments
+    database: "{{ env_var('DBT_DATABASE', target.database) }}"
+    schema: fresh_segments
+    loader: postgres
+    tables:
+      - name: interest_map
+        description: Lookup table that maps interest ids to names and summary metadata.
+        columns:
+          - name: id
+            tests:
+              - not_null
+              - unique
+          - name: interest_name
+            tests:
+              - not_null
+      - name: interest_metrics
+        description: Monthly composition and index metrics for each interest id.
+        columns:
+          - name: interest_id
+          - name: month_year

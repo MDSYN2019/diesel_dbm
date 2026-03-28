@@ -26,6 +26,7 @@ A small Rust + Diesel project for managing a Postgres schema, with a companion S
 - `src/migrations.rs` – migration/scaffold helper utilities.
 - `migrations/` – SQL migrations tracked in source control.
 - `streamlit_app/` – Python Streamlit frontend and DB client.
+- `dbt_fresh_segments/` – dbt project for modeling `fresh_segments` source tables into analytics marts.
 
 ## Prerequisites
 
