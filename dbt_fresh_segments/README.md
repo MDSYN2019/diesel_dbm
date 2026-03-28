@@ -54,6 +54,28 @@ dbt run
 dbt test
 ```
 
+
+## Sanity-check compiled SQL in a separate folder
+
+Use the helper script to render Jinja templates into raw SQL without writing to the default `target/` directory:
+
+```bash
+cd dbt_fresh_segments
+scripts/dbt_sanity_sql.sh
+```
+
+This compiles into `dbt_fresh_segments/sanity_sql/target/compiled/fresh_segments/models/` so you can inspect the rendered SQL separately from normal dbt artifacts.
+
+Optional examples:
+
+```bash
+# only compile marts models
+scripts/dbt_sanity_sql.sh --select marts.*
+
+# customize output folder
+SANITY_DIR=tmp/sanity_sql scripts/dbt_sanity_sql.sh
+```
+
 ## Model graph
 
 ```text
