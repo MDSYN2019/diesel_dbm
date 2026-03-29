@@ -1,6 +1,6 @@
 with source as (
     select *
-    from {{ source('fresh_segments', 'interest_metrics') }}
+    from "fresh_segments"."fresh_segments"."interest_metrics"
 ),
 
 cleaned as (
@@ -9,7 +9,7 @@ cleaned as (
         nullif(_year, 'NULL')::integer as year_number,
         case
             when month_year = 'NULL' then null
-            else month_year
+            else to_date(month_year, 'MM-YYYY')
         end as month_start_date,
         nullif(interest_id, 'NULL')::integer as interest_id,
         composition::numeric(10, 4) as composition,

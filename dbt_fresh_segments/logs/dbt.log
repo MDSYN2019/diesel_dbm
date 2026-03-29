@@ -1,0 +1,542 @@
+[0m20:54:39.133208 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1529697500>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c152917e630>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1529696930>]}
+
+
+============================== 20:54:39.135452 | 9005067e-59b0-4e06-9653-919f9b7da5d7 ==============================
+[0m20:54:39.135452 [info ] [MainThread]: Running with dbt=1.11.7
+[0m20:54:39.135816 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'quiet': 'False', 'debug': 'False', 'log_path': '/home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/logs', 'indirect_selection': 'eager', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'cache_selected_only': 'False', 'empty': 'False', 'profiles_dir': '/home/sang/.dbt', 'use_colors': 'True', 'invocation_command': 'dbt compile --target-path sanity_sql/target --no-partial-parse', 'write_json': 'True', 'warn_error': 'None', 'log_cache_events': 'False', 'static_parser': 'True', 'target_path': 'sanity_sql/target', 'use_experimental_parser': 'False', 'partial_parse': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'version_check': 'True', 'fail_fast': 'False'}
+[0m20:54:39.229128 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '9005067e-59b0-4e06-9653-919f9b7da5d7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c15287b9250>]}
+[0m20:54:39.267420 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '9005067e-59b0-4e06-9653-919f9b7da5d7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1528d08740>]}
+[0m20:54:39.267944 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m20:54:39.302443 [debug] [MainThread]: checksum: b80718358155fc17c3559352095564dd56ada1cc1a1c0ef2e62c857e71583775, vars: {}, profile: , target: , version: 1.11.7
+[0m20:54:39.302863 [debug] [MainThread]: Partial parsing not enabled
+[0m20:54:39.964084 [warn ] [MainThread]: [[33mWARNING[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+functionality
+Found top-level arguments to test `relationships` defined on
+'fct_interest_monthly_performance' in package 'fresh_segments'
+(models/marts/schema.yml). Arguments to generic tests should be nested under the
+`arguments` property.
+[0m20:54:39.964458 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '9005067e-59b0-4e06-9653-919f9b7da5d7', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1527df4bf0>]}
+[0m20:54:40.048383 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '9005067e-59b0-4e06-9653-919f9b7da5d7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1527d7baa0>]}
+[0m20:54:40.092607 [debug] [MainThread]: Wrote artifact WritableManifest to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/manifest.json
+[0m20:54:40.093628 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/semantic_manifest.json
+[0m20:54:40.100729 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '9005067e-59b0-4e06-9653-919f9b7da5d7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c152610f8c0>]}
+[0m20:54:40.101060 [info ] [MainThread]: Found 4 models, 16 data tests, 2 sources, 464 macros
+[0m20:54:40.101314 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '9005067e-59b0-4e06-9653-919f9b7da5d7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c152658acc0>]}
+[0m20:54:40.102723 [info ] [MainThread]: 
+[0m20:54:40.103023 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m20:54:40.103263 [info ] [MainThread]: 
+[0m20:54:40.103601 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m20:54:40.106286 [debug] [ThreadPool]: Acquiring new postgres connection 'list_fresh_segments_analytics_analytics'
+[0m20:54:40.113332 [debug] [ThreadPool]: Acquiring new postgres connection 'list_fresh_segments_analytics_analytics_staging'
+[0m20:54:40.125535 [debug] [ThreadPool]: Using postgres connection "list_fresh_segments_analytics_analytics"
+[0m20:54:40.125882 [debug] [ThreadPool]: Using postgres connection "list_fresh_segments_analytics_analytics_staging"
+[0m20:54:40.126417 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "fresh_segments", "target_name": "dev", "connection_name": "list_fresh_segments_analytics_analytics"} */
+select
+      'fresh_segments' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'analytics_analytics'
+    union all
+    select
+      'fresh_segments' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'analytics_analytics'
+    union all
+    select
+      'fresh_segments' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'analytics_analytics'
+  
+[0m20:54:40.126935 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics_staging: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "fresh_segments", "target_name": "dev", "connection_name": "list_fresh_segments_analytics_analytics_staging"} */
+select
+      'fresh_segments' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'analytics_analytics_staging'
+    union all
+    select
+      'fresh_segments' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'analytics_analytics_staging'
+    union all
+    select
+      'fresh_segments' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'analytics_analytics_staging'
+  
+[0m20:54:40.127322 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:54:40.127800 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:54:40.138650 [debug] [ThreadPool]: SQL status: SELECT 2 in 0.011 seconds
+[0m20:54:40.139226 [debug] [ThreadPool]: SQL status: SELECT 2 in 0.011 seconds
+[0m20:54:40.140542 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics: ROLLBACK
+[0m20:54:40.141542 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics_staging: ROLLBACK
+[0m20:54:40.142324 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics: Close
+[0m20:54:40.142758 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics_staging: Close
+[0m20:54:40.146468 [debug] [MainThread]: Using postgres connection "master"
+[0m20:54:40.146806 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "fresh_segments", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m20:54:40.147095 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m20:54:40.155622 [debug] [MainThread]: SQL status: SELECT 2 in 0.008 seconds
+[0m20:54:40.157278 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '9005067e-59b0-4e06-9653-919f9b7da5d7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c15265a13a0>]}
+[0m20:54:40.157998 [debug] [MainThread]: On master: ROLLBACK
+[0m20:54:40.159306 [debug] [MainThread]: On master: Close
+[0m20:54:40.162718 [debug] [Thread-1 (]: Began running node model.fresh_segments.stg_fresh_segments__interest_map
+[0m20:54:40.163445 [debug] [Thread-2 (]: Began running node model.fresh_segments.stg_fresh_segments__interest_metrics
+[0m20:54:40.164116 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_fresh_segments_analytics_analytics_staging, now model.fresh_segments.stg_fresh_segments__interest_map)
+[0m20:54:40.164804 [debug] [Thread-3 (]: Began running node test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7
+[0m20:54:40.165575 [debug] [Thread-4 (]: Began running node test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b
+[0m20:54:40.166343 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_fresh_segments_analytics_analytics, now model.fresh_segments.stg_fresh_segments__interest_metrics)
+[0m20:54:40.167062 [debug] [Thread-1 (]: Began compiling node model.fresh_segments.stg_fresh_segments__interest_map
+[0m20:54:40.168123 [debug] [Thread-3 (]: Acquiring new postgres connection 'test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7'
+[0m20:54:40.169235 [debug] [Thread-4 (]: Acquiring new postgres connection 'test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b'
+[0m20:54:40.170033 [debug] [Thread-2 (]: Began compiling node model.fresh_segments.stg_fresh_segments__interest_metrics
+[0m20:54:40.181062 [debug] [Thread-3 (]: Began compiling node test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7
+[0m20:54:40.181820 [debug] [Thread-4 (]: Began compiling node test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b
+[0m20:54:40.184597 [debug] [Thread-2 (]: Writing injected SQL for node "model.fresh_segments.stg_fresh_segments__interest_metrics"
+[0m20:54:40.191020 [debug] [Thread-1 (]: Writing injected SQL for node "model.fresh_segments.stg_fresh_segments__interest_map"
+[0m20:54:40.197448 [debug] [Thread-4 (]: Writing injected SQL for node "test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b"
+[0m20:54:40.199741 [debug] [Thread-3 (]: Writing injected SQL for node "test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7"
+[0m20:54:40.201162 [debug] [Thread-1 (]: Began executing node model.fresh_segments.stg_fresh_segments__interest_map
+[0m20:54:40.202539 [debug] [Thread-1 (]: Finished running node model.fresh_segments.stg_fresh_segments__interest_map
+[0m20:54:40.203241 [debug] [Thread-1 (]: Began running node test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766
+[0m20:54:40.204209 [debug] [Thread-4 (]: Began executing node test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b
+[0m20:54:40.205001 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.fresh_segments.stg_fresh_segments__interest_map, now test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766)
+[0m20:54:40.205752 [debug] [Thread-3 (]: Began executing node test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7
+[0m20:54:40.206873 [debug] [Thread-4 (]: Finished running node test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b
+[0m20:54:40.207986 [debug] [Thread-1 (]: Began compiling node test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766
+[0m20:54:40.208731 [debug] [Thread-2 (]: Began executing node model.fresh_segments.stg_fresh_segments__interest_metrics
+[0m20:54:40.209889 [debug] [Thread-3 (]: Finished running node test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7
+[0m20:54:40.217533 [debug] [Thread-1 (]: Writing injected SQL for node "test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766"
+[0m20:54:40.218057 [debug] [Thread-4 (]: Began running node model.fresh_segments.dim_interest
+[0m20:54:40.218743 [debug] [Thread-2 (]: Finished running node model.fresh_segments.stg_fresh_segments__interest_metrics
+[0m20:54:40.219276 [debug] [Thread-3 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48
+[0m20:54:40.220013 [debug] [Thread-1 (]: Began executing node test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766
+[0m20:54:40.220499 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b, now model.fresh_segments.dim_interest)
+[0m20:54:40.221021 [debug] [Thread-2 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f
+[0m20:54:40.221560 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7, now test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48)
+[0m20:54:40.222504 [debug] [Thread-1 (]: Finished running node test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766
+[0m20:54:40.223100 [debug] [Thread-4 (]: Began compiling node model.fresh_segments.dim_interest
+[0m20:54:40.223660 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.fresh_segments.stg_fresh_segments__interest_metrics, now test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f)
+[0m20:54:40.224188 [debug] [Thread-3 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48
+[0m20:54:40.224759 [debug] [Thread-1 (]: Began running node test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024
+[0m20:54:40.227075 [debug] [Thread-4 (]: Writing injected SQL for node "model.fresh_segments.dim_interest"
+[0m20:54:40.227674 [debug] [Thread-2 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f
+[0m20:54:40.232046 [debug] [Thread-3 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48"
+[0m20:54:40.232663 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766, now test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024)
+[0m20:54:40.237457 [debug] [Thread-2 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f"
+[0m20:54:40.238439 [debug] [Thread-4 (]: Began executing node model.fresh_segments.dim_interest
+[0m20:54:40.239146 [debug] [Thread-1 (]: Began compiling node test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024
+[0m20:54:40.239966 [debug] [Thread-3 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48
+[0m20:54:40.241254 [debug] [Thread-4 (]: Finished running node model.fresh_segments.dim_interest
+[0m20:54:40.242042 [debug] [Thread-2 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f
+[0m20:54:40.247032 [debug] [Thread-1 (]: Writing injected SQL for node "test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024"
+[0m20:54:40.247853 [debug] [Thread-3 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48
+[0m20:54:40.248473 [debug] [Thread-4 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1
+[0m20:54:40.249371 [debug] [Thread-2 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f
+[0m20:54:40.250500 [debug] [Thread-1 (]: Began executing node test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024
+[0m20:54:40.251191 [debug] [Thread-3 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525
+[0m20:54:40.251884 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.fresh_segments.dim_interest, now test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1)
+[0m20:54:40.252737 [debug] [Thread-2 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1
+[0m20:54:40.253861 [debug] [Thread-1 (]: Finished running node test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024
+[0m20:54:40.254571 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48, now test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525)
+[0m20:54:40.255286 [debug] [Thread-4 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1
+[0m20:54:40.256008 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f, now test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1)
+[0m20:54:40.256837 [debug] [Thread-1 (]: Began running node model.fresh_segments.fct_interest_monthly_performance
+[0m20:54:40.257575 [debug] [Thread-3 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525
+[0m20:54:40.262603 [debug] [Thread-4 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1"
+[0m20:54:40.263264 [debug] [Thread-2 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1
+[0m20:54:40.263900 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024, now model.fresh_segments.fct_interest_monthly_performance)
+[0m20:54:40.268611 [debug] [Thread-3 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525"
+[0m20:54:40.274738 [debug] [Thread-4 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1
+[0m20:54:40.275855 [debug] [Thread-2 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1"
+[0m20:54:40.276522 [debug] [Thread-1 (]: Began compiling node model.fresh_segments.fct_interest_monthly_performance
+[0m20:54:40.277288 [debug] [Thread-3 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525
+[0m20:54:40.278116 [debug] [Thread-4 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1
+[0m20:54:40.278588 [debug] [Thread-2 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1
+[0m20:54:40.281710 [debug] [Thread-1 (]: Writing injected SQL for node "model.fresh_segments.fct_interest_monthly_performance"
+[0m20:54:40.282623 [debug] [Thread-3 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525
+[0m20:54:40.283184 [debug] [Thread-4 (]: Began running node test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469
+[0m20:54:40.284101 [debug] [Thread-2 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1
+[0m20:54:40.284977 [debug] [Thread-3 (]: Began running node test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c
+[0m20:54:40.285588 [debug] [Thread-1 (]: Began executing node model.fresh_segments.fct_interest_monthly_performance
+[0m20:54:40.286408 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1, now test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469)
+[0m20:54:40.286976 [debug] [Thread-2 (]: Began running node test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97
+[0m20:54:40.287412 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525, now test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c)
+[0m20:54:40.288495 [debug] [Thread-1 (]: Finished running node model.fresh_segments.fct_interest_monthly_performance
+[0m20:54:40.288993 [debug] [Thread-4 (]: Began compiling node test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469
+[0m20:54:40.289523 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1, now test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97)
+[0m20:54:40.290032 [debug] [Thread-3 (]: Began compiling node test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c
+[0m20:54:40.293390 [debug] [Thread-4 (]: Writing injected SQL for node "test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469"
+[0m20:54:40.294193 [debug] [Thread-2 (]: Began compiling node test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97
+[0m20:54:40.294809 [debug] [Thread-1 (]: Began running node test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e
+[0m20:54:40.298779 [debug] [Thread-3 (]: Writing injected SQL for node "test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c"
+[0m20:54:40.303073 [debug] [Thread-2 (]: Writing injected SQL for node "test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97"
+[0m20:54:40.303610 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.fresh_segments.fct_interest_monthly_performance, now test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e)
+[0m20:54:40.304334 [debug] [Thread-4 (]: Began executing node test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469
+[0m20:54:40.305396 [debug] [Thread-1 (]: Began compiling node test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e
+[0m20:54:40.306208 [debug] [Thread-4 (]: Finished running node test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469
+[0m20:54:40.309195 [debug] [Thread-1 (]: Writing injected SQL for node "test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e"
+[0m20:54:40.309606 [debug] [Thread-2 (]: Began executing node test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97
+[0m20:54:40.309952 [debug] [Thread-3 (]: Began executing node test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c
+[0m20:54:40.310485 [debug] [Thread-4 (]: Began running node test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413
+[0m20:54:40.311225 [debug] [Thread-1 (]: Began executing node test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e
+[0m20:54:40.311786 [debug] [Thread-2 (]: Finished running node test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97
+[0m20:54:40.312396 [debug] [Thread-3 (]: Finished running node test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c
+[0m20:54:40.312806 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469, now test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413)
+[0m20:54:40.313571 [debug] [Thread-1 (]: Finished running node test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e
+[0m20:54:40.314025 [debug] [Thread-2 (]: Began running node test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4
+[0m20:54:40.314483 [debug] [Thread-3 (]: Began running node test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e
+[0m20:54:40.314925 [debug] [Thread-4 (]: Began compiling node test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413
+[0m20:54:40.315649 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97, now test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4)
+[0m20:54:40.316041 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c, now test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e)
+[0m20:54:40.320672 [debug] [Thread-4 (]: Writing injected SQL for node "test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413"
+[0m20:54:40.321108 [debug] [Thread-2 (]: Began compiling node test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4
+[0m20:54:40.321629 [debug] [Thread-3 (]: Began compiling node test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e
+[0m20:54:40.322310 [debug] [Thread-4 (]: Began executing node test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413
+[0m20:54:40.325673 [debug] [Thread-2 (]: Writing injected SQL for node "test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4"
+[0m20:54:40.329227 [debug] [Thread-3 (]: Writing injected SQL for node "test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e"
+[0m20:54:40.329974 [debug] [Thread-4 (]: Finished running node test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413
+[0m20:54:40.330585 [debug] [Thread-2 (]: Began executing node test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4
+[0m20:54:40.331341 [debug] [Thread-3 (]: Began executing node test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e
+[0m20:54:40.332134 [debug] [Thread-2 (]: Finished running node test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4
+[0m20:54:40.332898 [debug] [Thread-3 (]: Finished running node test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e
+[0m20:54:40.334385 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m20:54:40.334737 [debug] [MainThread]: Connection 'test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4' was properly closed.
+[0m20:54:40.335038 [debug] [MainThread]: Connection 'test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e' was properly closed.
+[0m20:54:40.335326 [debug] [MainThread]: Connection 'test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e' was properly closed.
+[0m20:54:40.335591 [debug] [MainThread]: Connection 'test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413' was properly closed.
+[0m20:54:40.337735 [debug] [MainThread]: Command end result
+[0m20:54:40.348750 [debug] [MainThread]: Wrote artifact WritableManifest to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/manifest.json
+[0m20:54:40.349700 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/semantic_manifest.json
+[0m20:54:40.353499 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/run_results.json
+[0m20:54:40.353895 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- MissingArgumentsPropertyInGenericTestDeprecation: 2 occurrences
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m20:54:40.354568 [debug] [MainThread]: Resource report: {"command_name": "compile", "command_success": true, "command_wall_clock_time": 1.2548425, "process_in_blocks": "264", "process_kernel_time": 0.090997, "process_mem_max_rss": "133544", "process_out_blocks": "3288", "process_user_time": 1.958952}
+[0m20:54:40.354922 [debug] [MainThread]: Command `dbt compile` succeeded at 20:54:40.354856 after 1.26 seconds
+[0m20:54:40.355206 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c15288026c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c15271eee40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1528f7c710>]}
+[0m20:54:40.355495 [debug] [MainThread]: Flushing usage events
+[0m20:54:40.804220 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:55:12.298636 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958b3a6f8f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958b0d6c3e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958b14bd730>]}
+
+
+============================== 20:55:12.300741 | 87601dab-b48b-476b-8e4a-1cb488e1a1f0 ==============================
+[0m20:55:12.300741 [info ] [MainThread]: Running with dbt=1.11.7
+[0m20:55:12.301110 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'debug': 'False', 'empty': 'False', 'target_path': 'sanity_sql/target', 'log_path': '/home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/logs', 'log_cache_events': 'False', 'profiles_dir': '/home/sang/.dbt', 'introspect': 'True', 'use_colors': 'True', 'cache_selected_only': 'False', 'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'indirect_selection': 'eager', 'partial_parse': 'False', 'no_print': 'None', 'quiet': 'False', 'printer_width': '80', 'write_json': 'True', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'warn_error': 'None', 'invocation_command': 'dbt compile --target-path sanity_sql/target --no-partial-parse', 'log_format': 'default'}
+[0m20:55:12.395708 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '87601dab-b48b-476b-8e4a-1cb488e1a1f0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958b0931790>]}
+[0m20:55:12.434175 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '87601dab-b48b-476b-8e4a-1cb488e1a1f0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958aff53e00>]}
+[0m20:55:12.434692 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m20:55:12.469170 [debug] [MainThread]: checksum: b80718358155fc17c3559352095564dd56ada1cc1a1c0ef2e62c857e71583775, vars: {}, profile: , target: , version: 1.11.7
+[0m20:55:12.469609 [debug] [MainThread]: Partial parsing not enabled
+[0m20:55:13.145696 [warn ] [MainThread]: [[33mWARNING[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+functionality
+Found top-level arguments to test `relationships` defined on
+'fct_interest_monthly_performance' in package 'fresh_segments'
+(models/marts/schema.yml). Arguments to generic tests should be nested under the
+`arguments` property.
+[0m20:55:13.146063 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '87601dab-b48b-476b-8e4a-1cb488e1a1f0', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958afb390d0>]}
+[0m20:55:13.230002 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '87601dab-b48b-476b-8e4a-1cb488e1a1f0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958af3e0cb0>]}
+[0m20:55:13.276021 [debug] [MainThread]: Wrote artifact WritableManifest to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/manifest.json
+[0m20:55:13.277309 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/semantic_manifest.json
+[0m20:55:13.285489 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '87601dab-b48b-476b-8e4a-1cb488e1a1f0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958ae755fa0>]}
+[0m20:55:13.285877 [info ] [MainThread]: Found 4 models, 16 data tests, 2 sources, 464 macros
+[0m20:55:13.286153 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '87601dab-b48b-476b-8e4a-1cb488e1a1f0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958aefea6c0>]}
+[0m20:55:13.287669 [info ] [MainThread]: 
+[0m20:55:13.287981 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m20:55:13.288226 [info ] [MainThread]: 
+[0m20:55:13.288574 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m20:55:13.291813 [debug] [ThreadPool]: Acquiring new postgres connection 'list_fresh_segments_analytics_analytics'
+[0m20:55:13.297856 [debug] [ThreadPool]: Acquiring new postgres connection 'list_fresh_segments_analytics_analytics_staging'
+[0m20:55:13.311298 [debug] [ThreadPool]: Using postgres connection "list_fresh_segments_analytics_analytics"
+[0m20:55:13.311631 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "fresh_segments", "target_name": "dev", "connection_name": "list_fresh_segments_analytics_analytics"} */
+select
+      'fresh_segments' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'analytics_analytics'
+    union all
+    select
+      'fresh_segments' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'analytics_analytics'
+    union all
+    select
+      'fresh_segments' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'analytics_analytics'
+  
+[0m20:55:13.311880 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:55:13.312230 [debug] [ThreadPool]: Using postgres connection "list_fresh_segments_analytics_analytics_staging"
+[0m20:55:13.312533 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics_staging: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "fresh_segments", "target_name": "dev", "connection_name": "list_fresh_segments_analytics_analytics_staging"} */
+select
+      'fresh_segments' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'analytics_analytics_staging'
+    union all
+    select
+      'fresh_segments' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'analytics_analytics_staging'
+    union all
+    select
+      'fresh_segments' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'analytics_analytics_staging'
+  
+[0m20:55:13.312769 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m20:55:13.318870 [debug] [ThreadPool]: SQL status: SELECT 2 in 0.006 seconds
+[0m20:55:13.319879 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics_staging: ROLLBACK
+[0m20:55:13.320229 [debug] [ThreadPool]: SQL status: SELECT 2 in 0.008 seconds
+[0m20:55:13.320557 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics_staging: Close
+[0m20:55:13.321493 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics: ROLLBACK
+[0m20:55:13.322401 [debug] [ThreadPool]: On list_fresh_segments_analytics_analytics: Close
+[0m20:55:13.325761 [debug] [MainThread]: Using postgres connection "master"
+[0m20:55:13.326088 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "fresh_segments", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m20:55:13.326377 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m20:55:13.331873 [debug] [MainThread]: SQL status: SELECT 2 in 0.005 seconds
+[0m20:55:13.333252 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '87601dab-b48b-476b-8e4a-1cb488e1a1f0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958b07c1bb0>]}
+[0m20:55:13.333618 [debug] [MainThread]: On master: ROLLBACK
+[0m20:55:13.334439 [debug] [MainThread]: On master: Close
+[0m20:55:13.336311 [debug] [Thread-1 (]: Began running node model.fresh_segments.stg_fresh_segments__interest_map
+[0m20:55:13.336859 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_fresh_segments_analytics_analytics, now model.fresh_segments.stg_fresh_segments__interest_map)
+[0m20:55:13.337387 [debug] [Thread-2 (]: Began running node model.fresh_segments.stg_fresh_segments__interest_metrics
+[0m20:55:13.338042 [debug] [Thread-1 (]: Began compiling node model.fresh_segments.stg_fresh_segments__interest_map
+[0m20:55:13.338711 [debug] [Thread-3 (]: Began running node test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7
+[0m20:55:13.339317 [debug] [Thread-4 (]: Began running node test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b
+[0m20:55:13.339829 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_fresh_segments_analytics_analytics_staging, now model.fresh_segments.stg_fresh_segments__interest_metrics)
+[0m20:55:13.348062 [debug] [Thread-1 (]: Writing injected SQL for node "model.fresh_segments.stg_fresh_segments__interest_map"
+[0m20:55:13.348576 [debug] [Thread-3 (]: Acquiring new postgres connection 'test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7'
+[0m20:55:13.349333 [debug] [Thread-4 (]: Acquiring new postgres connection 'test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b'
+[0m20:55:13.349727 [debug] [Thread-2 (]: Began compiling node model.fresh_segments.stg_fresh_segments__interest_metrics
+[0m20:55:13.350419 [debug] [Thread-3 (]: Began compiling node test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7
+[0m20:55:13.351009 [debug] [Thread-1 (]: Began executing node model.fresh_segments.stg_fresh_segments__interest_map
+[0m20:55:13.351396 [debug] [Thread-4 (]: Began compiling node test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b
+[0m20:55:13.354225 [debug] [Thread-2 (]: Writing injected SQL for node "model.fresh_segments.stg_fresh_segments__interest_metrics"
+[0m20:55:13.363478 [debug] [Thread-3 (]: Writing injected SQL for node "test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7"
+[0m20:55:13.364185 [debug] [Thread-1 (]: Finished running node model.fresh_segments.stg_fresh_segments__interest_map
+[0m20:55:13.367908 [debug] [Thread-4 (]: Writing injected SQL for node "test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b"
+[0m20:55:13.368821 [debug] [Thread-1 (]: Began running node test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766
+[0m20:55:13.369375 [debug] [Thread-3 (]: Began executing node test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7
+[0m20:55:13.370336 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.fresh_segments.stg_fresh_segments__interest_map, now test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766)
+[0m20:55:13.371260 [debug] [Thread-4 (]: Began executing node test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b
+[0m20:55:13.372072 [debug] [Thread-2 (]: Began executing node model.fresh_segments.stg_fresh_segments__interest_metrics
+[0m20:55:13.373337 [debug] [Thread-3 (]: Finished running node test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7
+[0m20:55:13.373953 [debug] [Thread-1 (]: Began compiling node test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766
+[0m20:55:13.375233 [debug] [Thread-4 (]: Finished running node test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b
+[0m20:55:13.376661 [debug] [Thread-2 (]: Finished running node model.fresh_segments.stg_fresh_segments__interest_metrics
+[0m20:55:13.377526 [debug] [Thread-3 (]: Began running node model.fresh_segments.dim_interest
+[0m20:55:13.383558 [debug] [Thread-1 (]: Writing injected SQL for node "test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766"
+[0m20:55:13.384082 [debug] [Thread-4 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48
+[0m20:55:13.384761 [debug] [Thread-2 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f
+[0m20:55:13.385319 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.fresh_segments.source_not_null_fresh_segments_interest_map_id.1b76d3d7c7, now model.fresh_segments.dim_interest)
+[0m20:55:13.385864 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.fresh_segments.source_not_null_fresh_segments_interest_map_interest_name.d9bc4aed7b, now test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48)
+[0m20:55:13.386561 [debug] [Thread-1 (]: Began executing node test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766
+[0m20:55:13.387011 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.fresh_segments.stg_fresh_segments__interest_metrics, now test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f)
+[0m20:55:13.387381 [debug] [Thread-3 (]: Began compiling node model.fresh_segments.dim_interest
+[0m20:55:13.387832 [debug] [Thread-4 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48
+[0m20:55:13.388653 [debug] [Thread-1 (]: Finished running node test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766
+[0m20:55:13.389097 [debug] [Thread-2 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f
+[0m20:55:13.390801 [debug] [Thread-3 (]: Writing injected SQL for node "model.fresh_segments.dim_interest"
+[0m20:55:13.394766 [debug] [Thread-4 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48"
+[0m20:55:13.395415 [debug] [Thread-1 (]: Began running node test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024
+[0m20:55:13.399341 [debug] [Thread-2 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f"
+[0m20:55:13.400066 [debug] [Thread-4 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48
+[0m20:55:13.400643 [debug] [Thread-3 (]: Began executing node model.fresh_segments.dim_interest
+[0m20:55:13.401215 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.fresh_segments.source_unique_fresh_segments_interest_map_id.b172de1766, now test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024)
+[0m20:55:13.401881 [debug] [Thread-2 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f
+[0m20:55:13.402657 [debug] [Thread-4 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48
+[0m20:55:13.403404 [debug] [Thread-3 (]: Finished running node model.fresh_segments.dim_interest
+[0m20:55:13.403920 [debug] [Thread-1 (]: Began compiling node test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024
+[0m20:55:13.404718 [debug] [Thread-2 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f
+[0m20:55:13.405297 [debug] [Thread-4 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1
+[0m20:55:13.405911 [debug] [Thread-3 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525
+[0m20:55:13.409301 [debug] [Thread-1 (]: Writing injected SQL for node "test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024"
+[0m20:55:13.409863 [debug] [Thread-2 (]: Began running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1
+[0m20:55:13.410356 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_id.cb2203fd48, now test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1)
+[0m20:55:13.410715 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.fresh_segments.dim_interest, now test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525)
+[0m20:55:13.411278 [debug] [Thread-1 (]: Began executing node test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024
+[0m20:55:13.411748 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_map_interest_name.0ae9f29b9f, now test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1)
+[0m20:55:13.412217 [debug] [Thread-4 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1
+[0m20:55:13.412533 [debug] [Thread-3 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525
+[0m20:55:13.413128 [debug] [Thread-1 (]: Finished running node test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024
+[0m20:55:13.413532 [debug] [Thread-2 (]: Began compiling node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1
+[0m20:55:13.415964 [debug] [Thread-4 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1"
+[0m20:55:13.418324 [debug] [Thread-3 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525"
+[0m20:55:13.418758 [debug] [Thread-1 (]: Began running node model.fresh_segments.fct_interest_monthly_performance
+[0m20:55:13.422003 [debug] [Thread-2 (]: Writing injected SQL for node "test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1"
+[0m20:55:13.422553 [debug] [Thread-4 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1
+[0m20:55:13.423072 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.fresh_segments.unique_stg_fresh_segments__interest_map_interest_id.9b83476024, now model.fresh_segments.fct_interest_monthly_performance)
+[0m20:55:13.423626 [debug] [Thread-3 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525
+[0m20:55:13.424247 [debug] [Thread-2 (]: Began executing node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1
+[0m20:55:13.424845 [debug] [Thread-4 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1
+[0m20:55:13.425312 [debug] [Thread-1 (]: Began compiling node model.fresh_segments.fct_interest_monthly_performance
+[0m20:55:13.426109 [debug] [Thread-3 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525
+[0m20:55:13.426796 [debug] [Thread-2 (]: Finished running node test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1
+[0m20:55:13.427197 [debug] [Thread-4 (]: Began running node test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469
+[0m20:55:13.429738 [debug] [Thread-1 (]: Writing injected SQL for node "model.fresh_segments.fct_interest_monthly_performance"
+[0m20:55:13.430278 [debug] [Thread-3 (]: Began running node test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c
+[0m20:55:13.430787 [debug] [Thread-2 (]: Began running node test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97
+[0m20:55:13.431183 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_interest_id.960d25dbf1, now test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469)
+[0m20:55:13.431717 [debug] [Thread-1 (]: Began executing node model.fresh_segments.fct_interest_monthly_performance
+[0m20:55:13.432250 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_month_start_date.e246812525, now test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c)
+[0m20:55:13.432761 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_stg_fresh_segments__interest_metrics_ranking.d93144cef1, now test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97)
+[0m20:55:13.433156 [debug] [Thread-4 (]: Began compiling node test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469
+[0m20:55:13.433709 [debug] [Thread-1 (]: Finished running node model.fresh_segments.fct_interest_monthly_performance
+[0m20:55:13.434327 [debug] [Thread-3 (]: Began compiling node test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c
+[0m20:55:13.434773 [debug] [Thread-2 (]: Began compiling node test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97
+[0m20:55:13.437200 [debug] [Thread-4 (]: Writing injected SQL for node "test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469"
+[0m20:55:13.439611 [debug] [Thread-3 (]: Writing injected SQL for node "test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c"
+[0m20:55:13.440281 [debug] [Thread-1 (]: Began running node test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e
+[0m20:55:13.442668 [debug] [Thread-2 (]: Writing injected SQL for node "test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97"
+[0m20:55:13.443103 [debug] [Thread-4 (]: Began executing node test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469
+[0m20:55:13.443592 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.fresh_segments.fct_interest_monthly_performance, now test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e)
+[0m20:55:13.443933 [debug] [Thread-3 (]: Began executing node test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c
+[0m20:55:13.444452 [debug] [Thread-2 (]: Began executing node test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97
+[0m20:55:13.445003 [debug] [Thread-4 (]: Finished running node test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469
+[0m20:55:13.445415 [debug] [Thread-1 (]: Began compiling node test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e
+[0m20:55:13.445973 [debug] [Thread-3 (]: Finished running node test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c
+[0m20:55:13.446559 [debug] [Thread-2 (]: Finished running node test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97
+[0m20:55:13.446975 [debug] [Thread-4 (]: Began running node test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413
+[0m20:55:13.449447 [debug] [Thread-1 (]: Writing injected SQL for node "test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e"
+[0m20:55:13.449898 [debug] [Thread-3 (]: Began running node test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4
+[0m20:55:13.450305 [debug] [Thread-2 (]: Began running node test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e
+[0m20:55:13.450650 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_dim_interest_interest_id.4c03e9a469, now test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413)
+[0m20:55:13.451149 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.fresh_segments.not_null_dim_interest_interest_name.984fd8035c, now test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4)
+[0m20:55:13.451559 [debug] [Thread-1 (]: Began executing node test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e
+[0m20:55:13.451936 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.fresh_segments.unique_dim_interest_interest_id.0fcb831c97, now test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e)
+[0m20:55:13.452222 [debug] [Thread-4 (]: Began compiling node test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413
+[0m20:55:13.452536 [debug] [Thread-3 (]: Began compiling node test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4
+[0m20:55:13.453064 [debug] [Thread-1 (]: Finished running node test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e
+[0m20:55:13.453416 [debug] [Thread-2 (]: Began compiling node test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e
+[0m20:55:13.455872 [debug] [Thread-4 (]: Writing injected SQL for node "test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413"
+[0m20:55:13.458393 [debug] [Thread-3 (]: Writing injected SQL for node "test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4"
+[0m20:55:13.461513 [debug] [Thread-2 (]: Writing injected SQL for node "test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e"
+[0m20:55:13.461996 [debug] [Thread-4 (]: Began executing node test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413
+[0m20:55:13.462591 [debug] [Thread-3 (]: Began executing node test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4
+[0m20:55:13.463210 [debug] [Thread-2 (]: Began executing node test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e
+[0m20:55:13.463735 [debug] [Thread-4 (]: Finished running node test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413
+[0m20:55:13.464409 [debug] [Thread-3 (]: Finished running node test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4
+[0m20:55:13.465113 [debug] [Thread-2 (]: Finished running node test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e
+[0m20:55:13.466674 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m20:55:13.466938 [debug] [MainThread]: Connection 'test.fresh_segments.accepted_values_fct_interest_monthly_performance_ranking_bucket__top_10__top_100__long_tail.c02772ca5e' was properly closed.
+[0m20:55:13.467165 [debug] [MainThread]: Connection 'test.fresh_segments.relationships_fct_interest_monthly_performance_interest_id__interest_id__ref_dim_interest_.a8d887cd7e' was properly closed.
+[0m20:55:13.467373 [debug] [MainThread]: Connection 'test.fresh_segments.not_null_fct_interest_monthly_performance_month_start_date.d3288e54b4' was properly closed.
+[0m20:55:13.467573 [debug] [MainThread]: Connection 'test.fresh_segments.not_null_fct_interest_monthly_performance_interest_id.f6c50be413' was properly closed.
+[0m20:55:13.469044 [debug] [MainThread]: Command end result
+[0m20:55:13.479828 [debug] [MainThread]: Wrote artifact WritableManifest to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/manifest.json
+[0m20:55:13.480772 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/semantic_manifest.json
+[0m20:55:13.484605 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/sang/Desktop/Sandbox/rust/diesel_dbm/dbt_fresh_segments/sanity_sql/target/run_results.json
+[0m20:55:13.485001 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- MissingArgumentsPropertyInGenericTestDeprecation: 2 occurrences
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m20:55:13.485597 [debug] [MainThread]: Resource report: {"command_name": "compile", "command_success": true, "command_wall_clock_time": 1.2204604, "process_in_blocks": "0", "process_kernel_time": 0.089214, "process_mem_max_rss": "133568", "process_out_blocks": "3296", "process_user_time": 1.913605}
+[0m20:55:13.485910 [debug] [MainThread]: Command `dbt compile` succeeded at 20:55:13.485851 after 1.22 seconds
+[0m20:55:13.486190 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958b08b0dd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958b1790320>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7958b17908c0>]}
+[0m20:55:13.486461 [debug] [MainThread]: Flushing usage events
+[0m20:55:13.927049 [debug] [MainThread]: An error was encountered while trying to flush usage events

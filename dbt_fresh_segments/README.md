@@ -20,6 +20,8 @@ This dbt project models the `fresh_segments` schema loaded by `sql/fresh_segment
    ```bash
    pip install dbt-postgres
    ```
+   source ~/venvs/dbt-clean/bin/activate - this needs to be used to use the venv dbt rather than the root dbt which tends to crash 
+   
 
 2. Set a profile in `~/.dbt/profiles.yml`:
 
