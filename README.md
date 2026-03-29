@@ -56,6 +56,17 @@ fn main() {
 }
 ```
 
+## CI/CD for pull requests
+
+This repository now includes a GitHub Actions workflow at `.github/workflows/pr-ci-cd.yml` that runs on every pull request and on manual dispatch.
+
+It currently performs:
+
+- Rust quality checks: `cargo fmt --check`, `cargo clippy -D warnings`, and `cargo test`.
+- Streamlit Python checks: dependency install + `python -m compileall streamlit_app`.
+- dbt guardrail: `dbt parse --no-write-json` in `dbt_fresh_segments/`.
+- Build preview step: compiles the Rust crate in release mode and uploads `target/release` as a PR artifact after quality gates pass.
+
 ## Streamlit UI
 
 See `streamlit_app/README.md` for detailed UI setup. Quick start:
