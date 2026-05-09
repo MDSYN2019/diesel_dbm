@@ -8,6 +8,7 @@ use serde_json::Value;
 #[diesel(table_name = crate::schema::posts)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Post {
+    // we want to create a post struct into which we can read out data, and have diesel generate the names we'll use to reference tables and columns
     pub id: i32,
     pub title: String,
     pub body: String,

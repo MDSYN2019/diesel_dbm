@@ -1,6 +1,6 @@
 pub mod migrations;
-pub mod models;
-pub mod schema;
+pub mod models; // This module contains the data models for the application
+pub mod schema; // This module contains the database schema definitions for the application
 
 use diesel::prelude::*;
 use dotenvy::dotenv;
@@ -9,11 +9,12 @@ use std::env;
 use crate::models::{NewPost, Post};
 
 pub fn establish_connection() -> PgConnection {
-    dotenv().ok();
+    dotenv().ok(); // load environment variables from .env file
 
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set"); // get the database URL from environment variable
+
     PgConnection::establish(&database_url)
-        .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
+        .unwrap_or_else(|_| panic!("Error connecting to {}", database_url)) // establish a connection to the database
 }
 
 pub fn list_posts(conn: &mut PgConnection) -> QueryResult<Vec<Post>> {
