@@ -9,21 +9,16 @@ diesel::table! {
     }
 }
 
-// ---
-
 diesel::table! {
-    use diesel::sql_types::*;
     use diesel::sql_types::Json;
 
-    fresh_segments.json_data (raw_data) {
+    json_data (raw_data) {
         raw_data -> Json,
     }
 }
 
 diesel::table! {
-    use diesel::sql_types::*;
-
-    fresh_segments.interest_map (id) {
+    interest_map (id) {
         id -> Int4,
         interest_name -> Text,
         interest_summary -> Text,
@@ -33,11 +28,8 @@ diesel::table! {
 }
 
 diesel::table! {
-    use diesel::sql_types::*;
-
-    // Your SQL has no real PK; this is only to let Diesel declare the table.
-    // Treat this as a read-mostly table unless you add a real PK later.
-    fresh_segments.interest_metrics (_month, _year, month_year, interest_id, ranking) {
+    // Composite key is used only so Diesel can map records.
+    interest_metrics (_month, _year, month_year, interest_id, ranking) {
         _month -> Varchar,
         _year -> Varchar,
         month_year -> Varchar,
@@ -49,10 +41,9 @@ diesel::table! {
     }
 }
 
-diesel::joinable!(fresh_segments.interest_metrics -> fresh_segments.interest_map (interest_id));
-
 diesel::allow_tables_to_appear_in_same_query!(
-    fresh_segments.json_data,
-    fresh_segments.interest_map,
-    fresh_segments.interest_metrics,
+    posts,
+    json_data,
+    interest_map,
+    interest_metrics,
 );
