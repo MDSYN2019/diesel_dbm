@@ -27,6 +27,7 @@ A small Rust + Diesel project for managing a Postgres schema, with a companion S
 - `migrations/` – SQL migrations tracked in source control.
 - `streamlit_app/` – Python Streamlit frontend and DB client.
 - `dbt_fresh_segments/` – dbt project for modeling `fresh_segments` source tables into analytics marts.
+- `python/dags/` – Airflow DAGs for scheduled dbt orchestration.
 
 ## Prerequisites
 
@@ -66,6 +67,15 @@ It currently performs:
 - Streamlit Python checks: dependency install + `python -m compileall streamlit_app`.
 - dbt guardrail: `dbt parse --no-write-json` in `dbt_fresh_segments/`.
 - Build preview step: compiles the Rust crate in release mode and uploads `target/release` as a PR artifact after quality gates pass.
+
+## Airflow dbt pipelines
+
+Airflow DAGs in `python/dags/` can run the `dbt_fresh_segments` project on a schedule:
+
+- `fresh_segments_dbt_daily` runs `dbt deps`, `dbt debug`, `dbt run`, and `dbt test` daily at `06:00 UTC`.
+- `fresh_segments_dbt_compile_check` runs `dbt compile` every 6 hours as a lightweight parse/compile guardrail.
+
+See `python/dags/README.md` for Airflow setup, required environment variables, dbt profile configuration, and local run instructions.
 
 ## Streamlit UI
 
