@@ -1,9 +1,9 @@
-with metrics as (
+with metrics as ( -- take the interest metrics from the staging table 
     select *
     from {{ ref('stg_fresh_segments__interest_metrics') }}
 ),
 
-interest as (
+interest as ( -- take the interest details from the dimension table  
     select *
     from {{ ref('dim_interest') }}
 )

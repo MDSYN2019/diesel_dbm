@@ -11,7 +11,18 @@ models:
       - name: interest_name
         tests:
           - not_null
-
+          
+  - name: interest_monthly_leaderboard
+    description: top 10 interests per month
+    tests:
+      - dbt_utils.expression_is_true:
+            arguments:
+              expression: "ranking > 0"
+    columns:
+      - name: month_start_date
+        tests:
+          - not_null          
+          
   - name: fct_interest_monthly_performance
     description: Fact table with one row per interest and month including composition, index, and ranking metrics.
     columns:

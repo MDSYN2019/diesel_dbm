@@ -14,11 +14,13 @@ models:
 
   - name: stg_fresh_segments__interest_metrics
     description: Cleaned monthly metrics with typed numeric/date columns and removed placeholder NULL strings.
-    columns:
+    columns:      
       - name: interest_id
         tests:
           - not_null
-      - name: month_start_date
+
+          
+      - name: month_start_date # find where month_start_date is null
         tests:
           - not_null
       - name: ranking

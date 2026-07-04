@@ -17,6 +17,7 @@ cleaned as (
         ranking::integer as ranking,
         percentile_ranking::numeric(10, 4) as percentile_ranking
     from source
+    where month_year is not null
 )
 
 select *
