@@ -28,3 +28,21 @@ This Streamlit app now provides a lightweight **data modeling interface** (in th
 
 - This is a pragmatic prototype and not a full SQLDBM implementation.
 - For production-grade modeling, route generated DDL through Diesel migrations.
+
+## FastAPI control API
+
+The same Postgres helper can be exposed as an HTTP API for automation or other frontends:
+
+```bash
+uvicorn streamlit_app.api:app --reload
+```
+
+Available controls include:
+
+- `GET /health` for database connectivity.
+- `GET /schema/{schema_name}` for schema introspection.
+- `GET /posts` and `POST /posts` for the existing posts demo.
+- `POST /ddl/generate` to generate a `CREATE TABLE` statement from JSON.
+- `POST /ddl/apply` to execute DDL in a transaction.
+
+OpenAPI documentation is available at `http://127.0.0.1:8000/docs` when the API is running.
