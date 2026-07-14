@@ -1,0 +1,18 @@
+
+      
+        
+        
+        delete from "fresh_segments"."analytics"."elementary_test_results" as DBT_INTERNAL_DEST
+        where (id) in (
+            select distinct id
+            from "elementary_test_results__dbt_tmp205106244535" as DBT_INTERNAL_SOURCE
+        );
+
+    
+
+    insert into "fresh_segments"."analytics"."elementary_test_results" ("id", "data_issue_id", "test_execution_id", "test_unique_id", "model_unique_id", "invocation_id", "detected_at", "created_at", "database_name", "schema_name", "table_name", "column_name", "test_type", "test_sub_type", "test_results_description", "owners", "tags", "test_results_query", "other", "test_name", "test_params", "severity", "status", "failures", "test_short_name", "test_alias", "result_rows", "failed_row_count")
+    (
+        select "id", "data_issue_id", "test_execution_id", "test_unique_id", "model_unique_id", "invocation_id", "detected_at", "created_at", "database_name", "schema_name", "table_name", "column_name", "test_type", "test_sub_type", "test_results_description", "owners", "tags", "test_results_query", "other", "test_name", "test_params", "severity", "status", "failures", "test_short_name", "test_alias", "result_rows", "failed_row_count"
+        from "elementary_test_results__dbt_tmp205106244535"
+    )
+  

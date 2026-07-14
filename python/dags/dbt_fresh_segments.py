@@ -14,7 +14,11 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 
-REPO_ROOT = os.environ.get("DIESEL_DBM_REPO_ROOT", "/workspace/diesel_dbm")
+#REPO_ROOT = os.environ.get("DIESEL_DBM_REPO_ROOT", "/workspace/diesel_dbm")
+REPO_ROOT = os.environ.get(
+    "DIESEL_DBM_REPO_ROOT",
+    "/home/sang/Desktop/current_repos/diesel_dbm",
+)
 DBT_PROJECT_DIR = os.environ.get(
     "DBT_FRESH_SEGMENTS_PROJECT_DIR",
     os.path.join(REPO_ROOT, "dbt_fresh_segments"),
@@ -63,25 +67,25 @@ with DAG(
     max_active_runs=1,
     tags=["dbt", "fresh_segments", "analytics"],
 ) as daily_dbt_dag:
-    dbt_deps = BashOperator(
+    dbt_deps = BashOperator( # this task is to install dependencies for the dby project 
         task_id="dbt_deps",
         bash_command=dbt_command("deps", include_selectors=False),
         env=DBT_ENV,
     )
 
-    dbt_debug = BashOperator(
+    dbt_debug = BashOperator( # this task is to check if the dbt project is set up correctly and can connect to the database
         task_id="dbt_debug",
         bash_command=dbt_command("debug", include_selectors=False),
         env=DBT_ENV,
     )
 
-    dbt_run = BashOperator(
+    dbt_run = BashOperator( # this task is to run the dbt models and create the tables/views in the database 
         task_id="dbt_run",
         bash_command=dbt_command("run"),
         env=DBT_ENV,
     )
 
-    dbt_test = BashOperator(
+    dbt_test = BashOperator( # this task is to run the dbt tests and validate the data in the database
         task_id="dbt_test",
         bash_command=dbt_command("test"),
         env=DBT_ENV,
@@ -90,11 +94,11 @@ with DAG(
     dbt_deps >> dbt_debug >> dbt_run >> dbt_test
 
 with DAG(
-    dag_id="fresh_segments_dbt_compile_check",
+    dag_id="fresh_segments_dbt_compile_check", # this dag is to check if the dbt project can compile sucessfully without running the models or tests 
     description="Compile the Fresh Segments dbt project on a lightweight schedule.",
     default_args=DEFAULT_ARGS,
     start_date=datetime(2026, 1, 1),
-    schedule="0 */6 * * *",
+    schedule="0 */6 * * *", # run every 6 hours
     catchup=False,
     max_active_runs=1,
     tags=["dbt", "fresh_segments", "validation"],

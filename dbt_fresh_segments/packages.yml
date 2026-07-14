@@ -1,3 +1,9 @@
 packages:
-  - package: dbt-labs/dbt_utils
+  - package: dbt-labs/codegen # very useful when you are starting from raw/source tables and want to quickly generate yaml or staging model boilerplate 
+    version: 0.14.1 
+  - package: dbt-labs/dbt_utils # not sure what this is used for
     version: 1.4.1
+  - package: elementary-data/elementary # used for observability
+    version: 0.19.0
+  - package: metaplane/dbt_expectations # used for more expressive tests 
+    version: 0.10.10
